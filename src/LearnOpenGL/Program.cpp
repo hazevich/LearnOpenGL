@@ -7,6 +7,14 @@ void FramebufferResized(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 
+void ProcessInput(GLFWwindow* window)
+{
+    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+    {
+        glfwSetWindowShouldClose(window, true);
+    }
+}
+
 int main()
 {
     glfwInit();
@@ -36,8 +44,13 @@ int main()
 
     while (!glfwWindowShouldClose(window))
     {
-        glfwSwapBuffers(window);
+        ProcessInput(window);
+
+        glClearColor(0.0f, 0.6f, 0.7f, 1.0f); // ocean blue
+        glClear(GL_COLOR_BUFFER_BIT);
+        
         glfwPollEvents();
+        glfwSwapBuffers(window);
     }
 
     glfwTerminate();
