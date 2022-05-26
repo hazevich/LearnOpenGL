@@ -35,6 +35,16 @@ void main()
 }
 )";
 
+const char* YellowFragmentShaderSource = R"(
+#version 330 core
+out vec4 FragColor;
+
+void main()
+{
+    FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);
+}
+)";
+
 bool CheckShaderCompileStatus(int shaderId, char* shaderName)
 {
     int success;
@@ -134,10 +144,22 @@ int main()
         return 1;
     }
 
+    unsigned int yellowFragmentShader;
+    if (!CompileShader(YellowFragmentShaderSource, GL_FRAGMENT_SHADER, "yellow fragment shader", yellowFragmentShader))
+    {
+        glfwTerminate();
+        return 1;
+    }
+
     unsigned int shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
+
+    unsigned int yellowShaderProgram = glCreateProgram();
+    glAttachShader(yellowShaderProgram, vertexShader);
+    glAttachShader(yellowShaderProgram, yellowFragmentShader);
+    glLinkProgram(yellowShaderProgram);
 
     {
         int success;
@@ -161,6 +183,7 @@ int main()
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
+    glDeleteShader(yellowFragmentShader);
 
     float triangle1Vertices[] = {
         -0.5f, -0.5f, 0.0f,
@@ -189,6 +212,7 @@ int main()
         glBindVertexArray(triangle1VertexDataObjects.VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
+        glUseProgram(yellowShaderProgram);
         glBindVertexArray(triangle2VertexDataObjects.VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
