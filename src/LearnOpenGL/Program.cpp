@@ -70,7 +70,7 @@ int main()
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-    const int width = 1280, height = 720;
+    const int width = 800, height = 600;
 
     GLFWwindow* window = glfwCreateWindow(width, height, "Hello world", NULL, NULL);
     if (window == NULL)
