@@ -35,16 +35,6 @@ void main()
 }
 )";
 
-const char* YellowFragmentShaderSource = R"(
-#version 330 core
-out vec4 FragColor;
-
-void main()
-{
-    FragColor = vec4(1.0f, 1.0f, 0.0f, 1.0f);
-}
-)";
-
 bool CheckShaderCompileStatus(int shaderId, char* shaderName)
 {
     int success;
@@ -73,12 +63,12 @@ unsigned int CompileShader(const char* shaderSource, GLenum shaderType, char* sh
     return CheckShaderCompileStatus(shaderId, shaderName);
 }
 
-struct VertexDataObjects
+struct VertexObjects
 {
     unsigned int VBO, VAO;
 };
 
-VertexDataObjects CreateVertexDataObjects(const float vertices[], int size)
+VertexObjects CreateVertexObjects(const float vertices[], int size)
 {
     unsigned int VBO, VAO;
     glGenBuffers(1, &VBO);
@@ -95,7 +85,7 @@ VertexDataObjects CreateVertexDataObjects(const float vertices[], int size)
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
 
-    VertexDataObjects vdo = {};
+    VertexObjects vdo = {};
     vdo.VAO = VAO;
     vdo.VBO = VBO;
 
@@ -144,22 +134,10 @@ int main()
         return 1;
     }
 
-    unsigned int yellowFragmentShader;
-    if (!CompileShader(YellowFragmentShaderSource, GL_FRAGMENT_SHADER, "yellow fragment shader", yellowFragmentShader))
-    {
-        glfwTerminate();
-        return 1;
-    }
-
     unsigned int shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
-
-    unsigned int yellowShaderProgram = glCreateProgram();
-    glAttachShader(yellowShaderProgram, vertexShader);
-    glAttachShader(yellowShaderProgram, yellowFragmentShader);
-    glLinkProgram(yellowShaderProgram);
 
     {
         int success;
@@ -183,22 +161,14 @@ int main()
 
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
-    glDeleteShader(yellowFragmentShader);
 
-    float triangle1Vertices[] = {
-        -0.5f, -0.5f, 0.0f,
+    float vertices[] = {
+        0.0f, 0.5f, 0.0f,
         0.5f, -0.5f, 0.0f,
-        0.5f, 0.5f, 0.0f,
+        -0.5f, -0.5f, 0.0f,
     };
 
-    float triangle2Vertices[] = {
-        -0.5f, 0.5f, 0.0f,
-        0.5f, 0.5f, 0.0f,
-        -0.5f, -0.5f, 0.0f
-    };
-
-    VertexDataObjects triangle1VertexDataObjects = CreateVertexDataObjects(triangle1Vertices, sizeof(triangle1Vertices));
-    VertexDataObjects triangle2VertexDataObjects = CreateVertexDataObjects(triangle2Vertices, sizeof(triangle2Vertices));
+    VertexObjects vertexObjects = CreateVertexObjects(vertices, sizeof(vertices));
 
     while (!glfwWindowShouldClose(window))
     {
@@ -209,11 +179,7 @@ int main()
 
         glUseProgram(shaderProgram);
 
-        glBindVertexArray(triangle1VertexDataObjects.VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
-
-        glUseProgram(yellowShaderProgram);
-        glBindVertexArray(triangle2VertexDataObjects.VAO);
+        glBindVertexArray(vertexObjects.VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
         glBindVertexArray(0);
@@ -223,6 +189,8 @@ int main()
     }
 
     glDeleteProgram(shaderProgram);
+    glDeleteBuffers(1, &vertexObjects.VBO);
+    glDeleteVertexArrays(1, &vertexObjects.VAO);
 
     glfwTerminate();
 
