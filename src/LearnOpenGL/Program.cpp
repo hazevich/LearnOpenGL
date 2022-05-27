@@ -124,6 +124,7 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         shader.Use();
+        shader.SetFloat("xOffset", 0.5f);
 
         glBindVertexArray(vertexObjects.VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
