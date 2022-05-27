@@ -2,6 +2,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Shader.h"
+#include "stb_image.h"
 
 void FramebufferResized(GLFWwindow* window, int width, int height)
 {
@@ -115,6 +116,26 @@ int main()
     };
 
     VertexObjects vertexObjects = CreateVertexObjects(vertices, sizeof(vertices));
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    int textureWidth, textureHeight, nrChannels;
+    unsigned char* data = stbi_load("Textures/container.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
+    if (!data)
+    {
+        std::cout << "Failed to load texture" << std::endl;
+    }
+
+    unsigned int texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    stbi_image_free(data);
 
     while (!glfwWindowShouldClose(window))
     {

@@ -15,7 +15,14 @@ group "src"
         objdir (objDir)
         location "src/LearnOpenGL"
 
-        files { "src/LearnOpenGL/**.h", "src/LearnOpenGL/**.cpp", "src/LearnOpenGL/Shaders/**.glsl" }
+        files 
+        { 
+            "src/LearnOpenGL/**.h", 
+            "src/LearnOpenGL/**.cpp", 
+            "src/LearnOpenGL/Shaders/**.glsl",
+            "src/LearnOpenGL/Textures/**.jpg",
+            "src/LearnOpenGL/Textures/**.png"
+        }
 
         links
         {
@@ -113,5 +120,9 @@ group "dependencies"
 
         files
         {
-            "dependencies/stb/stb_image.h"
+            "dependencies/stb/stb_image.h",
+            "dependencies/stb/stb_image.c",
         }
+
+        filter "files:**.h"
+            disablewarnings { "warning" }
