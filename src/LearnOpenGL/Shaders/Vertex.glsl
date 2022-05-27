@@ -8,9 +8,7 @@ uniform float xOffset;
 
 void main()
 {
-    vec3 upsideDown = aPos * -1;
-    vec3 offsetPos = vec3(upsideDown.x + xOffset, upsideDown.yz);
-    gl_Position = vec4(offsetPos, 1.0);
+    gl_Position = vec4(aPos, 1.0);
     vertexPosition = gl_Position;
     vertexColor = vec4(aColor, 1.0);
 }
