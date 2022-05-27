@@ -20,13 +20,15 @@ group "src"
         links
         {
             "glfw",
-            "glad"
+            "glad",
+            "stb"
         }
 
         includedirs
         {
             "dependencies/glfw/include",
             "dependencies/glad/include",
+            "dependencies/stb",
             "src/LearnOpenGL"
         }
 
@@ -101,3 +103,15 @@ group "dependencies"
         }
 
         includedirs { "dependencies/glad/include" }
+    
+    project "stb"
+        kind "StaticLib"
+        language "C"
+        targetdir (targetdirPath)
+        objdir (objdirPath)
+        location "dependencies/stb"
+
+        files
+        {
+            "dependencies/stb/stb_image.h"
+        }
