@@ -86,6 +86,36 @@ VertexObjects CreateVertexObjects(const float vertices[], int verticesSize, cons
     return vdo;
 }
 
+unsigned int CreateTexture(const char* texturePath, GLenum format)
+{
+    stbi_set_flip_vertically_on_load(true);
+    int textureWidth, textureHeight, nrChannels;
+    unsigned char* data = stbi_load(texturePath, &textureWidth, &textureHeight, &nrChannels, 0);
+
+    if (!data)
+    {
+        std::cout << "Failed to load texture" << std::endl;
+        return 0;
+    }
+
+    unsigned int texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, format, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+    stbi_image_free(data);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
+
+    return texture;
+}
+
 int main()
 {
     glfwInit();
@@ -130,25 +160,12 @@ int main()
 
     VertexObjects vertexObjects = CreateVertexObjects(vertices, sizeof(vertices), indices, sizeof(indices));
 
-    int textureWidth, textureHeight, nrChannels;
-    unsigned char* data = stbi_load("Textures/container.jpg", &textureWidth, &textureHeight, &nrChannels, 0);
-    if (!data)
-    {
-        std::cout << "Failed to load texture" << std::endl;
-    }
+    unsigned int containerTexture = CreateTexture("Textures/container.jpg", GL_RGB);
+    unsigned int awesomeFaceTexture = CreateTexture("Textures/awesomeface.png", GL_RGBA);
 
-    unsigned int texture;
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D, texture);
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, textureWidth, textureHeight, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-    glGenerateMipmap(GL_TEXTURE_2D);
-
-    stbi_image_free(data);
-
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    shader.Use();
+    shader.SetInt("texture1", 0);
+    shader.SetInt("texture2", 1);
 
     while (!glfwWindowShouldClose(window))
     {
@@ -159,7 +176,12 @@ int main()
 
         shader.Use();
 
-        glBindTexture(GL_TEXTURE_2D, texture);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, containerTexture);
+
+        glActiveTexture(GL_TEXTURE1);
+        glBindTexture(GL_TEXTURE_2D, awesomeFaceTexture);
+
         glBindVertexArray(vertexObjects.VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
