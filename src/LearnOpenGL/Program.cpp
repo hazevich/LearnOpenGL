@@ -86,7 +86,7 @@ VertexObjects CreateVertexObjects(const float vertices[], int verticesSize, cons
     return vdo;
 }
 
-unsigned int CreateTexture(const char* texturePath, GLenum format)
+unsigned int CreateTexture(const char* texturePath, GLenum format, GLint wrapType)
 {
     stbi_set_flip_vertically_on_load(true);
     int textureWidth, textureHeight, nrChannels;
@@ -106,8 +106,8 @@ unsigned int CreateTexture(const char* texturePath, GLenum format)
     glGenerateMipmap(GL_TEXTURE_2D);
     stbi_image_free(data);
 
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapType);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapType);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
@@ -147,10 +147,10 @@ int main()
 
     float vertices[] = {
         // positions            // colors            // texture coordinates 
-         0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 
-         0.5f, -0.5f,  0.0f,    0.0f, 1.0f, 0.0f,    1.0f, 0.0f,
+         0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    2.0f, 2.0f, 
+         0.5f, -0.5f,  0.0f,    0.0f, 1.0f, 0.0f,    2.0f, 0.0f,
         -0.5f, -0.5f,  0.0f,    0.0f, 0.0f, 1.0f,    0.0f, 0.0f,
-        -0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.0f, 1.0f,
+        -0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.0f, 2.0f,
     };
 
     unsigned int indices[] = {
@@ -160,8 +160,8 @@ int main()
 
     VertexObjects vertexObjects = CreateVertexObjects(vertices, sizeof(vertices), indices, sizeof(indices));
 
-    unsigned int containerTexture = CreateTexture("Textures/container.jpg", GL_RGB);
-    unsigned int awesomeFaceTexture = CreateTexture("Textures/awesomeface.png", GL_RGBA);
+    unsigned int containerTexture = CreateTexture("Textures/container.jpg", GL_RGB, GL_CLAMP_TO_EDGE);
+    unsigned int awesomeFaceTexture = CreateTexture("Textures/awesomeface.png", GL_RGBA, GL_REPEAT);
 
     shader.Use();
     shader.SetInt("texture1", 0);
