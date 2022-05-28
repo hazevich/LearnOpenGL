@@ -2,9 +2,11 @@
 out vec4 FragColor;
 
 in vec4 vertexColor;
-in vec4 vertexPosition;
+in vec2 textureCoordinate;
+
+uniform sampler2D texture;
 
 void main()
 {
-    FragColor = vertexPosition;
+    FragColor = texture(texture, textureCoordinate) * vertexColor;
 }
