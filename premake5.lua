@@ -21,7 +21,9 @@ group "src"
             "src/LearnOpenGL/**.cpp", 
             "src/LearnOpenGL/Shaders/**.glsl",
             "src/LearnOpenGL/Textures/**.jpg",
-            "src/LearnOpenGL/Textures/**.png"
+            "src/LearnOpenGL/Textures/**.png",
+            "dependenices/glm/**.hpp",
+            "dependenices/glm/**.inl",
         }
 
         links
@@ -36,6 +38,7 @@ group "src"
             "dependencies/glfw/include",
             "dependencies/glad/include",
             "dependencies/stb",
+            "dependencies/glm",
             "src/LearnOpenGL"
         }
 
@@ -53,8 +56,8 @@ group "dependencies"
     project "glfw"
         kind "StaticLib"
         language "C"
-        targetdir (targetdirPath)
-        objdir (objdirPath)
+        targetdir (buildDir)
+        objdir (objDir)
         location "dependencies/glfw"
 
         files
@@ -99,8 +102,8 @@ group "dependencies"
     project "glad"
         kind "StaticLib"
         language "C"
-        targetdir (targetdirPath)
-        objdir (objdirPath)
+        targetdir (buildDir)
+        objdir (objDir)
         location "dependencies/glad"
 
         files 
@@ -114,8 +117,8 @@ group "dependencies"
     project "stb"
         kind "StaticLib"
         language "C"
-        targetdir (targetdirPath)
-        objdir (objdirPath)
+        targetdir (buildDir)
+        objdir (objDir)
         location "dependencies/stb"
 
         files
