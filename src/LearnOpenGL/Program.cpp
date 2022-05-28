@@ -47,34 +47,35 @@ unsigned int CompileShader(const char* shaderSource, GLenum shaderType, char* sh
 
 struct VertexObjects
 {
-    unsigned int VBO, VAO;
+    unsigned int VBO, VAO, EBO;
 };
 
-VertexObjects CreateVertexObjects(const float vertices[], int size)
+VertexObjects CreateVertexObjects(const float vertices[], int verticesSize, const unsigned int indices[], int indicesSize)
 {
-    unsigned int VBO, VAO;
+    unsigned int VBO, VAO, EBO;
     glGenBuffers(1, &VBO);
+    glGenBuffers(1, &EBO);
     glGenVertexArrays(1, &VAO);
 
     glBindVertexArray(VAO);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, size, vertices, GL_STATIC_DRAW);
+    glBufferData(GL_ARRAY_BUFFER, verticesSize, vertices, GL_STATIC_DRAW);
 
-    // position pointer
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesSize, indices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*) 0);
     glEnableVertexAttribArray(0);
-
-    // color pointer
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-    glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
     VertexObjects vdo = {};
     vdo.VAO = VAO;
     vdo.VBO = VBO;
+    vdo.EBO = EBO;
 
     return vdo;
 }
@@ -109,13 +110,18 @@ int main()
     Shader shader = Shader("Shaders/Vertex.glsl", "Shaders/Fragment.glsl");
 
     float vertices[] = {
-         // positions           // colors
-         0.0f,  0.5f, 0.0f,     1.0f, 0.0f, 0.0f,
-         0.5f, -0.5f, 0.0f,     0.0f, 1.0f, 0.0f,
-        -0.5f, -0.5f, 0.0f,     0.0f, 0.0f, 1.0f,
+        0.5f, 0.5f, 0.0f,
+        0.5f,-0.5f, 0.0f,
+       -0.5f,-0.5f, 0.0f,
+       -0.5f, 0.5f, 0.0f,
     };
 
-    VertexObjects vertexObjects = CreateVertexObjects(vertices, sizeof(vertices));
+    unsigned int indices[] = {
+        0, 1, 2,
+        0, 2, 3,
+    };
+
+    VertexObjects vertexObjects = CreateVertexObjects(vertices, sizeof(vertices), indices, sizeof(indices));
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -145,10 +151,9 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         shader.Use();
-        shader.SetFloat("xOffset", 0.5f);
 
         glBindVertexArray(vertexObjects.VAO);
-        glDrawArrays(GL_TRIANGLES, 0, 3);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
         glBindVertexArray(0);
 
