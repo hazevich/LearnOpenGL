@@ -34,7 +34,6 @@ void ProcessInput(GLFWwindow* window)
 
 
     curr = glfwGetKey(window, GLFW_KEY_DOWN);
-    std::cout << arrowKeyDownState << curr << std::endl;
     if (curr == GLFW_PRESS && arrowKeyDownState == GLFW_RELEASE)
     {
         mixValue -= 0.1f;
@@ -91,7 +90,7 @@ VertexObjects CreateVertexObjects(const float vertices[], int verticesSize, cons
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, indicesSize, indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*) 0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
@@ -173,7 +172,7 @@ int main()
 
     float vertices[] = {
         // positions            // colors            // texture coordinates 
-         0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 
+         0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    1.0f, 1.0f,
          0.5f, -0.5f,  0.0f,    0.0f, 1.0f, 0.0f,    1.0f, 0.0f,
         -0.5f, -0.5f,  0.0f,    0.0f, 0.0f, 1.0f,    0.0f, 0.0f,
         -0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.0f, 1.0f,
@@ -193,6 +192,7 @@ int main()
     shader.SetInt("texture1", 0);
     shader.SetInt("texture2", 1);
 
+
     while (!glfwWindowShouldClose(window))
     {
         ProcessInput(window);
@@ -202,6 +202,9 @@ int main()
 
         shader.Use();
 
+        float time = glfwGetTime();
+        float sinTime = (sin(time) + 1.0f) * 0.5f;
+
         shader.SetFloat("mixValue", mixValue);
 
         glActiveTexture(GL_TEXTURE0);
@@ -210,9 +213,19 @@ int main()
         glActiveTexture(GL_TEXTURE1);
         glBindTexture(GL_TEXTURE_2D, awesomeFaceTexture);
 
+        glm::mat4 transform = glm::mat4(1.0f);
+        transform = glm::translate(transform, glm::vec3(-0.5f, 0.5f, 0.0f));
+        transform = glm::scale(transform, glm::vec3(sinTime, sinTime, 1.0f));
+
+        shader.SetMatrix("transform", transform);
         glBindVertexArray(vertexObjects.VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
 
+        transform = glm::mat4(1.0f);
+        transform = glm::translate(transform, glm::vec3(0.5f, -0.5f, 0.0f));
+        transform = glm::rotate(transform, time, glm::vec3(0.0f, 0.0f, 1.0f));
+        shader.SetMatrix("transform", transform);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
         glBindVertexArray(0);
 
         glfwPollEvents();
