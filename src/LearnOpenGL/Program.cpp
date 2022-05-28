@@ -147,10 +147,10 @@ int main()
 
     float vertices[] = {
         // positions            // colors            // texture coordinates 
-         0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.75f, 0.75f, 
-         0.5f, -0.5f,  0.0f,    0.0f, 1.0f, 0.0f,    0.75f, 0.25f,
-        -0.5f, -0.5f,  0.0f,    0.0f, 0.0f, 1.0f,    0.25f, 0.25f,
-        -0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.25f, 0.75f,
+         0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    1.0f, 1.0f, 
+         0.5f, -0.5f,  0.0f,    0.0f, 1.0f, 0.0f,    1.0f, 0.0f,
+        -0.5f, -0.5f,  0.0f,    0.0f, 0.0f, 1.0f,    0.0f, 0.0f,
+        -0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.0f, 1.0f,
     };
 
     unsigned int indices[] = {
@@ -175,6 +175,10 @@ int main()
         glClear(GL_COLOR_BUFFER_BIT);
 
         shader.Use();
+
+        float time = glfwGetTime();
+        float mixValue = (sin(time) + 1) * 0.5f;
+        shader.SetFloat("mixValue", mixValue);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, containerTexture);
