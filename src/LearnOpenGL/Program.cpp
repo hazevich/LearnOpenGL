@@ -3,11 +3,16 @@
 #include "GLFW/glfw3.h"
 #include "Shader.h"
 #include "stb_image.h"
+#include <algorithm>
 
 void FramebufferResized(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
+
+float mixValue = 0.2f;
+int arrowKeyUpState = GLFW_RELEASE;
+int arrowKeyDownState = GLFW_RELEASE;
 
 void ProcessInput(GLFWwindow* window)
 {
@@ -15,6 +20,24 @@ void ProcessInput(GLFWwindow* window)
     {
         glfwSetWindowShouldClose(window, true);
     }
+
+    int curr = glfwGetKey(window, GLFW_KEY_UP);
+
+    if (curr == GLFW_PRESS && arrowKeyUpState == GLFW_RELEASE)
+    {
+        mixValue += 0.1f;
+    }
+    arrowKeyUpState = curr;
+
+
+    curr = glfwGetKey(window, GLFW_KEY_DOWN);
+    std::cout << arrowKeyDownState << curr << std::endl;
+    if (curr == GLFW_PRESS && arrowKeyDownState == GLFW_RELEASE)
+    {
+        mixValue -= 0.1f;
+    }
+    arrowKeyDownState = curr;
+    mixValue = std::clamp(mixValue, 0.0f, 1.0f);
 }
 
 bool CheckShaderCompileStatus(int shaderId, char* shaderName)
@@ -176,8 +199,6 @@ int main()
 
         shader.Use();
 
-        float time = glfwGetTime();
-        float mixValue = (sin(time) + 1) * 0.5f;
         shader.SetFloat("mixValue", mixValue);
 
         glActiveTexture(GL_TEXTURE0);
