@@ -109,7 +109,7 @@ unsigned int CreateTexture(const char* texturePath, GLenum format, GLint wrapTyp
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, wrapType);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, wrapType);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     glBindTexture(GL_TEXTURE_2D, 0);
 
@@ -147,10 +147,10 @@ int main()
 
     float vertices[] = {
         // positions            // colors            // texture coordinates 
-         0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    2.0f, 2.0f, 
-         0.5f, -0.5f,  0.0f,    0.0f, 1.0f, 0.0f,    2.0f, 0.0f,
-        -0.5f, -0.5f,  0.0f,    0.0f, 0.0f, 1.0f,    0.0f, 0.0f,
-        -0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.0f, 2.0f,
+         0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.75f, 0.75f, 
+         0.5f, -0.5f,  0.0f,    0.0f, 1.0f, 0.0f,    0.75f, 0.25f,
+        -0.5f, -0.5f,  0.0f,    0.0f, 0.0f, 1.0f,    0.25f, 0.25f,
+        -0.5f,  0.5f,  0.0f,    1.0f, 0.0f, 0.0f,    0.25f, 0.75f,
     };
 
     unsigned int indices[] = {
@@ -160,7 +160,7 @@ int main()
 
     VertexObjects vertexObjects = CreateVertexObjects(vertices, sizeof(vertices), indices, sizeof(indices));
 
-    unsigned int containerTexture = CreateTexture("Textures/container.jpg", GL_RGB, GL_CLAMP_TO_EDGE);
+    unsigned int containerTexture = CreateTexture("Textures/container.jpg", GL_RGB, GL_REPEAT);
     unsigned int awesomeFaceTexture = CreateTexture("Textures/awesomeface.png", GL_RGBA, GL_REPEAT);
 
     shader.Use();
