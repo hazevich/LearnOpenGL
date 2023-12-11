@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../src/glad/include;../../dependencies/glfw/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../glad/include;../../dependencies/glfw/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -131,6 +131,9 @@
     <ClCompile Include="LearnOpenGL.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\glad\glad.vcxproj">
+      <Project>{b96cd30b-94a9-4766-8bfc-811406915465}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\glfw\glfw.vcxproj">
       <Project>{3da1ac2f-a684-4fbd-bab1-c1d9daff2412}</Project>
     </ProjectReference>

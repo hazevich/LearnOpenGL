@@ -53,6 +53,30 @@
     <ClCompile Include="..\..\dependencies\glfw\src\window.c">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\dependencies\glfw\src\context.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\glfw\src\init.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\glfw\src\input.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\glfw\src\vulkan.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\glfw\src\null_init.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\glfw\src\null_joystick.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\glfw\src\null_monitor.c">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\dependencies\glfw\src\null_window.c">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\dependencies\glfw\src\internal.h">
@@ -81,6 +105,12 @@
     </ClInclude>
     <ClInclude Include="..\..\dependencies\glfw\include\GLFW\glfw3native.h">
       <Filter>include\GLFW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\glfw\src\null_joystick.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\dependencies\glfw\src\null_platform.h">
+      <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
