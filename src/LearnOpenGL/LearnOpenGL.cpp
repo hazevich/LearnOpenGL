@@ -77,8 +77,6 @@ int main()
 
     shader.Use();
 
-    shader.SetFloat("horizontalOffset", 0.5f);
-
     while (!glfwWindowShouldClose(window))
     {
         processInput(window);
