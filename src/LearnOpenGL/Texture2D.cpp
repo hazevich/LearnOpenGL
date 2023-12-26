@@ -33,8 +33,8 @@ Texture2D::Texture2D(const std::string& path, ColorValue colorValue, WrappingMet
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, glWrappingMethod);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, glWrappingMethod);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
     GLenum glSourceColorValue;
 
