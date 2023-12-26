@@ -3,11 +3,14 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <algorithm>
 
 #include <iostream>
 #include "Shader.h"
 #include "stb_image.h"
 #include "Texture2D.h"
+
+float mixValue = 0.2f;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -20,6 +23,18 @@ void processInput(GLFWwindow* window)
     {
         glfwSetWindowShouldClose(window, true);
     }
+
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+    {
+        mixValue += 0.005f;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+    {
+        mixValue -= 0.005f;
+    }
+
+    mixValue = std::clamp(mixValue, 0.0f, 1.0f);
 }
 
 int main()
@@ -53,10 +68,10 @@ int main()
 
     float vertices[] = {
         // positions        // colors          // texture coordinates
-        0.5f,  0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  0.60f, 0.60f,
-        0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  0.60f, 0.40f,
-       -0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,  0.40f, 0.40f,
-       -0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 1.0f,  0.40f, 0.60f,
+        0.5f,  0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  1.0f, 1.0f,
+        0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+       -0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,  0.0f, 0.0f,
+       -0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
     };
 
     uint32_t indices[] = {
@@ -102,6 +117,8 @@ int main()
 
         glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
+
+        shader.SetFloat("mixValue", mixValue);
 
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, containerTexture.TextureId);
