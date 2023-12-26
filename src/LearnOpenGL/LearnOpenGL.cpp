@@ -53,10 +53,10 @@ int main()
 
     float vertices[] = {
         // positions        // colors          // texture coordinates
-        0.5f,  0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  1.0f, 1.0f,
-        0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  1.0f, 0.0f,
+        0.5f,  0.5f, 0.0f,  1.0f, 0.0f, 0.0f,  2.0f, 2.0f,
+        0.5f, -0.5f, 0.0f,  0.0f, 1.0f, 0.0f,  2.0f, 0.0f,
        -0.5f, -0.5f, 0.0f,  0.0f, 0.0f, 1.0f,  0.0f, 0.0f,
-       -0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 1.0f,  0.0f, 1.0f,
+       -0.5f,  0.5f, 0.0f,  1.0f, 1.0f, 1.0f,  0.0f, 2.0f,
     };
 
     uint32_t indices[] = {
@@ -64,8 +64,8 @@ int main()
         1, 2, 3,
     };
 
-    Texture2D containerTexture("Assets/container.jpg", ColorValue::RGB);
-    Texture2D awesomefaceTexture("Assets/awesomeface.png");
+    Texture2D containerTexture("Assets/container.jpg", ColorValue::RGB, WrappingMethod::ClampToEdge);
+    Texture2D awesomefaceTexture("Assets/awesomeface.png", ColorValue::RGBA, WrappingMethod::Repeat);
 
     uint32_t VBO, VAO, EBO;
     glGenBuffers(1, &VBO);
