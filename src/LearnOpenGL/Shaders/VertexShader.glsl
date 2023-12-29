@@ -8,10 +8,11 @@ out vec4 vertexPosition;
 out vec2 texCoord;
 
 uniform float horizontalOffset;
+uniform mat4 transform;
 
 void main()
 {
-	gl_Position = vec4(aPos.x + horizontalOffset, aPos.y, aPos.z, 1.0);
+	gl_Position = transform * vec4(aPos.x + horizontalOffset, aPos.y, aPos.z, 1.0);
     ourColor = aColor;
 	vertexPosition = gl_Position;
 	texCoord = aTexCoord;

@@ -6,6 +6,8 @@
 
 #include <glad/glad.h>
 
+#include <glm/gtc/type_ptr.hpp>
+
 uint32_t createShader(GLenum shaderType, const std::string& shaderSource)
 {
     uint32_t shaderId = glCreateShader(shaderType);
@@ -107,4 +109,9 @@ void Shader::SetInt(const std::string& name, int32_t value) const
 void Shader::SetFloat(const std::string& name, float value) const
 {
     glUniform1f(glGetUniformLocation(ProgramId, name.c_str()), value);
+}
+
+void Shader::SetMatrix(const std::string& name, glm::mat4 value) const
+{
+    glUniformMatrix4fv(glGetUniformLocation(ProgramId, name.c_str()), 1, GL_FALSE, glm::value_ptr(value));
 }
