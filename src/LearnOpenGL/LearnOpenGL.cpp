@@ -51,14 +51,17 @@ void processInput(GLFWwindow* window)
 
     float cameraSpeed = 2.5f * deltaTime;
 
+    auto forward = cameraFront;
+    forward.y = 0.0f;
+
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
     {
-        cameraPos += cameraFront * cameraSpeed;
+        cameraPos += forward * cameraSpeed;
     }
 
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
     {
-        cameraPos += cameraFront * -1.0f * cameraSpeed;
+        cameraPos += forward * -1.0f * cameraSpeed;
     }
 
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
