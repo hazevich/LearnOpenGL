@@ -11,18 +11,14 @@
 #include "Shader.h"
 #include "stb_image.h"
 #include "Texture2D.h"
+#include "Camera3D.h"
 
 float mixValue = 0.2f;
 float currentFrame = 0.0f;
 float lastFrame = 0.0f;
 float deltaTime = 0.0f;
 
-float yaw = -90.0f;
-float pitch = 0.0f;
-
-glm::vec3 cameraPos(0.0f);
-glm::vec3 cameraFront(0.0f, 0.0f, -1.0f);
-glm::vec3 cameraUp(0.0f, 1.0f, 0.0f);
+Camera3D _camera;
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
@@ -48,30 +44,26 @@ void processInput(GLFWwindow* window)
 
     mixValue = std::clamp(mixValue, 0.0f, 1.0f);
 
-
-    float cameraSpeed = 2.5f * deltaTime;
-
-    auto forward = cameraFront;
-    forward.y = 0.0f;
+    float cameraSpeed = 2.5f;
 
     if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
     {
-        cameraPos += forward * cameraSpeed;
+        _camera.Move(CameraMoveDirection::Forward, cameraSpeed, deltaTime);
     }
 
     if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
     {
-        cameraPos += forward * -1.0f * cameraSpeed;
+        _camera.Move(CameraMoveDirection::Backward, cameraSpeed, deltaTime);
     }
 
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
     {
-        cameraPos += glm::normalize(glm::cross(cameraFront, cameraUp)) * cameraSpeed;
+        _camera.Move(CameraMoveDirection::Right, cameraSpeed, deltaTime);
     }
 
     if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
     {
-        cameraPos += glm::normalize(glm::cross(cameraUp, cameraFront)) * cameraSpeed;
+        _camera.Move(CameraMoveDirection::Left, cameraSpeed, deltaTime);
     }
 }
 
@@ -80,33 +72,22 @@ bool firstMouse = true;
 
 void mouse_callback(GLFWwindow* window, double xpos, double ypos)
 {
+    auto xposf = static_cast<float>(xpos);
+    auto yposf = static_cast<float>(ypos);
     if (firstMouse)
     {
-        lastX = xpos;
-        lastY = ypos;
+        lastX = xposf;
+        lastY = yposf;
         firstMouse = false;
     }
 
-    float xoffset = xpos - lastX;
-    float yoffset = lastY - ypos;
+    float xoffset = xposf - lastX;
+    float yoffset = lastY - yposf;
 
-    lastX = xpos;
-    lastY = ypos;
+    lastX = xposf;
+    lastY = yposf;
 
-    float sensitivity = 10.f;
-    yaw += xoffset * sensitivity * deltaTime;
-    pitch += yoffset * sensitivity * deltaTime;
-
-    if (pitch < -89.f)
-        pitch = -89.f;
-    else if (pitch > 89.f)
-        pitch = 89.f;
-
-    glm::vec3 direction;
-    direction.x = glm::cos(glm::radians(yaw)) * glm::cos(glm::radians(pitch));
-    direction.y = glm::sin(glm::radians(pitch));
-    direction.z = glm::sin(glm::radians(yaw)) * glm::cos(glm::radians(pitch));
-    cameraFront = glm::normalize(direction);
+    _camera.ChangePitchYaw(xoffset, yoffset, deltaTime);
 }
 
 int main()
@@ -252,14 +233,9 @@ int main()
         glBindTexture(GL_TEXTURE_2D, awesomefaceTexture.TextureId);
 
         shader.SetFloat("mixValue", mixValue);
-        glm::mat4 view(1.0f);
-        view = glm::lookAt(cameraPos, cameraPos + cameraFront, cameraUp);
 
-        glm::mat4 projection(1.0f);
-        projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
-
-        shader.SetMatrix("view", view);
-        shader.SetMatrix("projection", projection);
+        shader.SetMatrix("view", _camera.GetView());
+        shader.SetMatrix("projection", _camera.GetProjection());
 
         for (int32_t i = 0; i < 10; i++)
         {
