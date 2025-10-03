@@ -13,9 +13,11 @@ project ("LearnOpenGL")
 
 
 add_subdirectory(dependencies/glfw)
+add_subdirectory(dependencies/glad)
 
 add_executable (LearnOpenGL "src/LearnOpenGL.cpp" "src/LearnOpenGL.h")
-target_link_libraries(LearnOpenGL PRIVATE glfw)
+target_link_libraries(LearnOpenGL PUBLIC glfw)
+target_link_libraries(LearnOpenGL PUBLIC glad)
 
 
 if (CMAKE_VERSION VERSION_GREATER 3.12)

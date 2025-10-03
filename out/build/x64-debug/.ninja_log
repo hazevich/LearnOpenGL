@@ -1,9 +1,9 @@
 # ninja log v6
 7	657	7811407961452278	CMakeFiles/LearnOpenGL.dir/LearnOpenGL.cpp.obj	777563d664935dab
 151	598	7811410411888616	dependencies/glfw/src/CMakeFiles/glfw.dir/wgl_context.c.obj	66bd3399247e4527
-682	941	7811408251957876	LearnOpenGL.exe	d3e72180c7bb3377
+703	905	7811411518909918	LearnOpenGL.exe	2eb1a51d5f582537
 70	639	7811410411078614	dependencies/glfw/src/CMakeFiles/glfw.dir/window.c.obj	640a99b9ae3813cc
-11	1075	7811410410478602	CMakeFiles/LearnOpenGL.dir/src/LearnOpenGL.cpp.obj	56cd7a3bc722be3f
+44	702	7811411512319532	CMakeFiles/LearnOpenGL.dir/src/LearnOpenGL.cpp.obj	ad3f4f8993d7e5d3
 142	691	7811410411798594	dependencies/glfw/src/CMakeFiles/glfw.dir/win32_monitor.c.obj	6400eef044c18662
 125	575	7811410411628599	dependencies/glfw/src/CMakeFiles/glfw.dir/win32_thread.c.obj	6ce37375d4e68e13
 96	583	7811410411338608	dependencies/glfw/src/CMakeFiles/glfw.dir/null_monitor.c.obj	57451ed1124477d7
@@ -24,7 +24,9 @@
 29	686	7811410410658602	dependencies/glfw/src/CMakeFiles/glfw.dir/input.c.obj	646edbf3f8ae798a
 146	688	7811410411838590	dependencies/glfw/src/CMakeFiles/glfw.dir/win32_window.c.obj	284b22081f5e5553
 691	754	7811410417291930	dependencies/glfw/src/glfw3.lib	2a03da0d52aaa37a
-12	606	7811411407878147	CMakeFiles/LearnOpenGL.dir/src/LearnOpenGL.cpp.obj	ad3f4f8993d7e5d3
-607	772	7811411413821044	LearnOpenGL.exe	2eb1a51d5f582537
-44	702	7811411512319532	CMakeFiles/LearnOpenGL.dir/src/LearnOpenGL.cpp.obj	ad3f4f8993d7e5d3
-703	905	7811411518909918	LearnOpenGL.exe	2eb1a51d5f582537
+13	383	7812089320666098	dependencies/glad/CMakeFiles/glad.dir/src/glad.c.obj	f18d8c4d8dd3b793
+383	447	7812089324368436	dependencies/glad/glad.lib	223d36a6b2639a7
+18	677	7812089320716095	CMakeFiles/LearnOpenGL.dir/src/LearnOpenGL.cpp.obj	c39d7326e18cc2ba
+677	928	7812089327312776	LearnOpenGL.exe	722798bb001162b8
+11	622	7812089586739282	CMakeFiles/LearnOpenGL.dir/src/LearnOpenGL.cpp.obj	c39d7326e18cc2ba
+622	790	7812089592847522	LearnOpenGL.exe	722798bb001162b8
