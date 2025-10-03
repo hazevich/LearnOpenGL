@@ -13,7 +13,8 @@ set(CHAPTERS
 	getting_started)
 
 set(getting_started
-	creating_a_window)
+	creating_a_window
+	hello_window)
 
 add_subdirectory(dependencies/glfw)
 add_subdirectory(dependencies/glad)
