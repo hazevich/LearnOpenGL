@@ -11,7 +11,7 @@
 # =============================================================================
 
 # =============================================================================
-# Project: LearnOpenGL
+# Project: creating_a_window
 # Configurations: Debug
 # =============================================================================
 
@@ -41,41 +41,41 @@ include CMakeFiles\rules.ninja
 
 cmake_ninja_workdir = D$:\Programming\Repos\LearnOpenGL\out\build\x64-debug\
 # =============================================================================
-# Object build statements for EXECUTABLE target LearnOpenGL
+# Object build statements for EXECUTABLE target creating_a_window
 
 
 #############################################
-# Order-only phony target for LearnOpenGL
+# Order-only phony target for creating_a_window
 
-build cmake_object_order_depends_target_LearnOpenGL: phony || cmake_object_order_depends_target_glad cmake_object_order_depends_target_glfw
+build cmake_object_order_depends_target_creating_a_window: phony || cmake_object_order_depends_target_glad cmake_object_order_depends_target_glfw
 
-build CMakeFiles\LearnOpenGL.dir\src\LearnOpenGL.cpp.obj: CXX_COMPILER__LearnOpenGL_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\src\LearnOpenGL.cpp || cmake_object_order_depends_target_LearnOpenGL
+build CMakeFiles\creating_a_window.dir\src\getting_started\creating_a_window\Program.cpp.obj: CXX_COMPILER__creating_a_window_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\src\getting_started\creating_a_window\Program.cpp || cmake_object_order_depends_target_creating_a_window
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -std:c++20 -ZI
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glad\include
-  OBJECT_DIR = CMakeFiles\LearnOpenGL.dir
-  OBJECT_FILE_DIR = CMakeFiles\LearnOpenGL.dir\src
-  TARGET_COMPILE_PDB = CMakeFiles\LearnOpenGL.dir\
-  TARGET_PDB = LearnOpenGL.pdb
+  OBJECT_DIR = CMakeFiles\creating_a_window.dir
+  OBJECT_FILE_DIR = CMakeFiles\creating_a_window.dir\src\getting_started\creating_a_window
+  TARGET_COMPILE_PDB = CMakeFiles\creating_a_window.dir\
+  TARGET_PDB = creating_a_window.pdb
 
 
 # =============================================================================
-# Link build statements for EXECUTABLE target LearnOpenGL
+# Link build statements for EXECUTABLE target creating_a_window
 
 
 #############################################
-# Link the executable LearnOpenGL.exe
+# Link the executable creating_a_window.exe
 
-build LearnOpenGL.exe: CXX_EXECUTABLE_LINKER__LearnOpenGL_Debug CMakeFiles\LearnOpenGL.dir\src\LearnOpenGL.cpp.obj | dependencies\glfw\src\glfw3.lib dependencies\glad\glad.lib || dependencies\glad\glad.lib dependencies\glfw\src\glfw3.lib
+build creating_a_window.exe: CXX_EXECUTABLE_LINKER__creating_a_window_Debug CMakeFiles\creating_a_window.dir\src\getting_started\creating_a_window\Program.cpp.obj | dependencies\glfw\src\glfw3.lib dependencies\glad\glad.lib || dependencies\glad\glad.lib dependencies\glfw\src\glfw3.lib
   FLAGS = /DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Ob0 /Od /RTC1 -ZI
   LINK_FLAGS = /machine:x64 /debug /INCREMENTAL /subsystem:console
   LINK_LIBRARIES = dependencies\glfw\src\glfw3.lib  dependencies\glad\glad.lib  kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib
-  OBJECT_DIR = CMakeFiles\LearnOpenGL.dir
+  OBJECT_DIR = CMakeFiles\creating_a_window.dir
   POST_BUILD = cd .
   PRE_LINK = cd .
-  TARGET_COMPILE_PDB = CMakeFiles\LearnOpenGL.dir\
-  TARGET_FILE = LearnOpenGL.exe
-  TARGET_IMPLIB = LearnOpenGL.lib
-  TARGET_PDB = LearnOpenGL.pdb
+  TARGET_COMPILE_PDB = CMakeFiles\creating_a_window.dir\
+  TARGET_FILE = creating_a_window.exe
+  TARGET_IMPLIB = creating_a_window.lib
+  TARGET_PDB = creating_a_window.pdb
 
 
 #############################################
@@ -217,7 +217,7 @@ build cmake_object_order_depends_target_glfw: phony || .
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -226,7 +226,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\context.c.obj: C_COMPILER__glfw_
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -235,7 +235,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\init.c.obj: C_COMPILER__glfw_uns
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\input.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\input.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -244,7 +244,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\input.c.obj: C_COMPILER__glfw_un
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -253,7 +253,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj: C_COMPILER__glfw_
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\platform.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\platform.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -262,7 +262,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\platform.c.obj: C_COMPILER__glfw
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\vulkan.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -271,7 +271,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj: C_COMPILER__glfw_u
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -280,7 +280,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\window.c.obj: C_COMPILER__glfw_u
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\egl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -289,7 +289,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj: C_COMPILER__g
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\osmesa_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -298,7 +298,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj: C_COMPILER
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\null_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -307,7 +307,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj: C_COMPILER__glf
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\null_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -316,7 +316,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj: C_COMPILER__
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\null_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -325,7 +325,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj: C_COMPILER__g
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\null_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -334,7 +334,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj: C_COMPILER_
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\win32_module.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -343,7 +343,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj: C_COMPILER__
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\win32_time.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -352,7 +352,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj: C_COMPILER__gl
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\win32_thread.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -361,7 +361,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj: C_COMPILER__
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\win32_init.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -370,7 +370,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj: C_COMPILER__gl
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\win32_joystick.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -379,7 +379,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj: C_COMPILER
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\win32_monitor.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -388,7 +388,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj: C_COMPILER_
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\win32_window.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -397,7 +397,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj: C_COMPILER__
 
 build dependencies\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj: C_COMPILER__glfw_unscanned_Debug D$:\Programming\Repos\LearnOpenGL\dependencies\glfw\src\wgl_context.c || cmake_object_order_depends_target_glfw
   DEFINES = -DUNICODE -D_CRT_SECURE_NO_WARNINGS -D_GLFW_WIN32 -D_UNICODE
-  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI /W3
+  FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd /W3
   INCLUDES = -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\include -ID:\Programming\Repos\LearnOpenGL\dependencies\glfw\src -ID:\Programming\Repos\LearnOpenGL\out\build\x64-debug\dependencies\glfw\src
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   OBJECT_FILE_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
@@ -413,7 +413,7 @@ build dependencies\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj: C_COMPILER__g
 # Link the static library dependencies\glfw\src\glfw3.lib
 
 build dependencies\glfw\src\glfw3.lib: C_STATIC_LIBRARY_LINKER__glfw_Debug dependencies\glfw\src\CMakeFiles\glfw.dir\context.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\init.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\input.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\monitor.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\platform.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\vulkan.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\window.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\egl_context.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\osmesa_context.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\null_init.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\null_monitor.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\null_window.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\null_joystick.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\win32_module.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\win32_time.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\win32_thread.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\win32_init.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\win32_joystick.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\win32_monitor.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\win32_window.c.obj dependencies\glfw\src\CMakeFiles\glfw.dir\wgl_context.c.obj
-  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -ZI
+  LANGUAGE_COMPILE_FLAGS = /DWIN32 /D_WINDOWS /W3 /MDd /Ob0 /Od /RTC1 -MDd
   LINK_FLAGS = /machine:x64
   OBJECT_DIR = dependencies\glfw\src\CMakeFiles\glfw.dir
   POST_BUILD = cd .
@@ -585,7 +585,7 @@ build dependencies\glad\install\local: phony dependencies\glad\CMakeFiles\instal
 # =============================================================================
 # Target aliases.
 
-build LearnOpenGL: phony LearnOpenGL.exe
+build creating_a_window: phony creating_a_window.exe
 
 build glad: phony dependencies\glad\glad.lib
 
@@ -607,7 +607,7 @@ build update_mappings: phony dependencies\glfw\src\update_mappings
 #############################################
 # Folder: D:/Programming/Repos/LearnOpenGL/out/build/x64-debug
 
-build all: phony LearnOpenGL.exe dependencies\glfw\all dependencies\glad\all
+build all: phony creating_a_window.exe dependencies\glfw\all dependencies\glad\all
 
 # =============================================================================
 

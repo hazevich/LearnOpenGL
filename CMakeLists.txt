@@ -9,19 +9,31 @@ if (POLICY CMP0141)
   set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT "$<IF:$<AND:$<C_COMPILER_ID:MSVC>,$<CXX_COMPILER_ID:MSVC>>,$<$<CONFIG:Debug,RelWithDebInfo>:EditAndContinue>,$<$<CONFIG:Debug,RelWithDebInfo>:ProgramDatabase>>")
 endif()
 
-project ("LearnOpenGL")
+set(CHAPTERS
+	getting_started)
 
+set(getting_started
+	creating_a_window)
 
 add_subdirectory(dependencies/glfw)
 add_subdirectory(dependencies/glad)
 
-add_executable (LearnOpenGL "src/LearnOpenGL.cpp" "src/LearnOpenGL.h")
-target_link_libraries(LearnOpenGL PUBLIC glfw)
-target_link_libraries(LearnOpenGL PUBLIC glad)
 
+foreach(CHAPTER ${CHAPTERS})
+	foreach(SECTION ${${CHAPTER}})
+		file(GLOB SOURCE_FILES "src/${CHAPTER}/${SECTION}/*.cpp")
 
-if (CMAKE_VERSION VERSION_GREATER 3.12)
-  set_property(TARGET LearnOpenGL PROPERTY CXX_STANDARD 20)
-endif()
+		project(${SECTION})
+
+		add_executable(${SECTION} ${SOURCE_FILES})
+
+		target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC glfw)
+		target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC glad)
+
+		if (CMAKE_VERSION VERSION_GREATER 3.12)
+		  set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 20)
+		endif()
+	endforeach()
+endforeach()
 
 # TODO: Add tests and install targets if needed.
