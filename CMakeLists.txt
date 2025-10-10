@@ -10,14 +10,16 @@ if (POLICY CMP0141)
 endif()
 
 set(CHAPTERS
-	getting_started)
+	1_getting_started)
 
-set(getting_started
-	creating_a_window
-	hello_window)
+set(1_getting_started
+	1.1_creating_a_window
+	1.2_hello_window
+	1.3_hello_triangle)
 
 add_subdirectory(dependencies/glfw)
 add_subdirectory(dependencies/glad)
+
 
 
 foreach(CHAPTER ${CHAPTERS})
