@@ -91,6 +91,19 @@ int main()
         std::cout << "Fragment shader compilation failed\n" << infoLog << std::endl;
     }
 
+    uint32_t shaderProgramId = glCreateProgram();
+    glAttachShader(shaderProgramId, vertexShaderId);
+    glAttachShader(shaderProgramId, fragmentShaderId);
+    glLinkProgram(shaderProgramId);
+
+    glGetProgramiv(shaderProgramId, GL_LINK_STATUS, &success);
+
+    if (!success)
+    {
+        glGetShaderInfoLog(shaderProgramId, sizeof(infoLog), NULL, infoLog);
+        std::cout << "Shader linking failed\n" << infoLog << std::endl;
+    }
+
     while (!glfwWindowShouldClose(window))
     {
         processInput(window);
