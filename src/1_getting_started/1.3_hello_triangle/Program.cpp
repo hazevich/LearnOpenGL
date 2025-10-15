@@ -21,6 +21,17 @@ void main()
 }
 )";
 
+const char* _fragmentShader = R"(
+#version 330 core
+out vec4 FragColor;
+
+void main()
+{
+    FragColor = vec4(1.0f, 0.1f, 0.1f, 1.0f);
+}
+
+)";
+
 int main()
 {
     glfwInit();
@@ -47,12 +58,12 @@ int main()
     glViewport(0, 0, 800, 600);
     glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-    unsigned int VBO;
+    uint32_t VBO;
     glGenBuffers(1, &VBO);
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, sizeof(_vertices), _vertices, GL_STATIC_DRAW);
 
-    unsigned int vertexShaderId;
+    uint32_t vertexShaderId;
     vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShaderId, 1, &_vertexShader, NULL);
     glCompileShader(vertexShaderId);
@@ -67,6 +78,18 @@ int main()
         std::cout << "Vertex shader compilation failed\n" << infoLog << std::endl;
     }
 
+    uint32_t fragmentShaderId;
+    fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShaderId, 1, &_fragmentShader, NULL);
+    glCompileShader(fragmentShaderId);
+
+    glGetShaderiv(fragmentShaderId, GL_COMPILE_STATUS, &success);
+
+    if (!success)
+    {
+        glGetShaderInfoLog(fragmentShaderId, sizeof(infoLog), NULL, infoLog);
+        std::cout << "Fragment shader compilation failed\n" << infoLog << std::endl;
+    }
 
     while (!glfwWindowShouldClose(window))
     {
