@@ -27,7 +27,7 @@ out vec4 FragColor;
 
 void main()
 {
-    FragColor = vec4(1.0f, 0.1f, 0.1f, 1.0f);
+    FragColor = vec4(0.6f, 0.3f, 0.6f, 1.0f);
 }
 
 )";
@@ -100,9 +100,27 @@ int main()
 
     if (!success)
     {
-        glGetShaderInfoLog(shaderProgramId, sizeof(infoLog), NULL, infoLog);
+        glGetProgramInfoLog(shaderProgramId, sizeof(infoLog), NULL, infoLog);
         std::cout << "Shader linking failed\n" << infoLog << std::endl;
     }
+
+    glDeleteShader(vertexShaderId);
+    glDeleteShader(fragmentShaderId);
+
+    uint32_t VAO;
+    glGenVertexArrays(1, &VAO);
+
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(_vertices), _vertices, GL_STATIC_DRAW);
+
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glEnableVertexAttribArray(0);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
 
     while (!glfwWindowShouldClose(window))
     {
@@ -111,9 +129,17 @@ int main()
         glClearColor(139.f / 255.f, 139.f / 255.f, 141.f / 255.f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
+        glUseProgram(shaderProgramId);
+        glBindVertexArray(VAO);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
+
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteProgram(shaderProgramId);
 
     glfwTerminate();
 
