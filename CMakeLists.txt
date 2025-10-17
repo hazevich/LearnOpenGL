@@ -18,6 +18,7 @@ set(1_getting_started
 	3.1_hello_triangle
 	3.2_hello_triangle_ebo
 	3.3_hello_triangle_excercise_1
+	3.4_hello_triangle_excercise_2
 )
 
 add_subdirectory(dependencies/glfw)
