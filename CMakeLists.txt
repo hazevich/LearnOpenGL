@@ -14,9 +14,11 @@ set(CHAPTERS
 
 set(1_getting_started
 	1.1_creating_a_window
-	1.2_hello_window
-	1.3_hello_triangle
-	1.4_hello_triangle_ebo)
+	2.1_hello_window
+	3.1_hello_triangle
+	3.2_hello_triangle_ebo
+	3.3_hello_triangle_excercise_1
+)
 
 add_subdirectory(dependencies/glfw)
 add_subdirectory(dependencies/glad)
