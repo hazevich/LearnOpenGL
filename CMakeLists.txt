@@ -23,6 +23,7 @@ set(1_getting_started
 	4.1_shaders_vertex_color
 	4.2_shaders_uniforms
 	4.3_shaders_more_attributes
+	4.4_shaders_shader_class
 )
 
 add_subdirectory(dependencies/glfw)
@@ -36,13 +37,25 @@ foreach(CHAPTER ${CHAPTERS})
 
 		project(${SECTION})
 
-		add_executable(${SECTION} ${SOURCE_FILES})
+		add_executable(${PROJECT_NAME} ${SOURCE_FILES})
 
 		target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC glfw)
 		target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC glad)
 
+		set_target_properties(${PROJECT_NAME} PROPERTIES
+			RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR}/${CHAPTER}/${SECTION}
+		)
+
+		set (SHADERS_PATH ${CMAKE_SOURCE_DIR}/src/${CHAPTER}/${SECTION}/shaders)
+
+		if (EXISTS ${SHADERS_PATH})
+			add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+				COMMAND ${CMAKE_COMMAND} -E copy_directory ${SHADERS_PATH} $<TARGET_FILE_DIR:${PROJECT_NAME}>/shaders
+			)
+		endif()
+
 		if (CMAKE_VERSION VERSION_GREATER 3.12)
-		  set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 20)
+		  set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 23)
 		endif()
 	endforeach()
 endforeach()
