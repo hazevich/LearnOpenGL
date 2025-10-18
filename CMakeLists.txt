@@ -22,6 +22,7 @@ set(1_getting_started
 	3.4_hello_triangle_excercise_3
 	4.1_shaders_vertex_color
 	4.2_shaders_uniforms
+	4.3_shaders_more_attributes
 )
 
 add_subdirectory(dependencies/glfw)
