@@ -9,10 +9,11 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
 float _vertices[] = {
-    -0.5f,  0.5f, 0.0f,
-    -0.5f, -0.5f, 0.0f,
-     0.5f, -0.5f, 0.0f,
-     0.5f,  0.5f, 0.0f,
+    // positions            // colors
+    -0.5f,  0.5f, 0.0f,     1.0f, 0.0f, 0.0f,
+    -0.5f, -0.5f, 0.0f,     0.0f, 1.0f, 0.0f,
+     0.5f, -0.5f, 0.0f,     0.0f, 0.0f, 1.0f,
+     0.5f,  0.5f, 0.0f,     1.0f, 1.0f, 1.0f,
 };
 
 uint32_t _indices[] = {
@@ -67,8 +68,11 @@ int main()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
+
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
@@ -91,7 +95,6 @@ int main()
     glGenerateMipmap(GL_TEXTURE_2D);
 
     stbi_image_free(data);
-
 
     mainLoop(window, VAO);
 
