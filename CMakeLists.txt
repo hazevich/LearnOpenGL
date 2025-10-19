@@ -26,6 +26,7 @@ set(1_getting_started
 	4.4_shaders_shader_class
 	4.5_shaders_excercise_1
 	4.6_shaders_excercise_2
+	4.7_shaders_excercise_3
 )
 
 add_subdirectory(dependencies/glfw)
