@@ -29,6 +29,7 @@ set(1_getting_started
 	4.7_shaders_excercise_3
 	5.1_textures
 	5.2_two_textures
+	5.3_textures_excercise_1
 )
 
 add_subdirectory(dependencies/glfw)
