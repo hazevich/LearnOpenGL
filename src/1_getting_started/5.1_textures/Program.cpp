@@ -1,7 +1,9 @@
 #include <iostream>
+#include <print>
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Shader.h"
+#include "stb_image.h"
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
@@ -71,6 +73,25 @@ int main()
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+    int32_t width, height, nrChannels;
+    unsigned char* data = stbi_load("assets/container.jpg", &width, &height, &nrChannels, 0);
+
+    if (!data)
+    {
+        std::println("Error loading image");
+        glfwTerminate();
+        return 0;
+    }
+
+    uint32_t textureId;
+    glGenTextures(1, &textureId);
+    glBindTexture(GL_TEXTURE_2D, textureId);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+    glGenerateMipmap(GL_TEXTURE_2D);
+
+    stbi_image_free(data);
+
 
     mainLoop(window, VAO);
 

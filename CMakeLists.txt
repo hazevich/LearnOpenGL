@@ -33,8 +33,6 @@ set(1_getting_started
 add_subdirectory(dependencies/glfw)
 add_subdirectory(dependencies/glad)
 
-include_directories(dependencies/stb/)
-
 add_library(stb_image src/stb_image.cpp)
 
 
@@ -65,10 +63,20 @@ foreach(CHAPTER ${CHAPTERS})
 			)
 		endif()
 
+		set (ASSETS_PATH ${CMAKE_SOURCE_DIR}/src/${CHAPTER}/${SECTION}/assets)
+
+		if (EXISTS ${ASSETS_PATH})
+			add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+				COMMAND ${CMAKE_COMMAND} -E copy_directory ${ASSETS_PATH} $<TARGET_FILE_DIR:${PROJECT_NAME}>/assets
+			)
+		endif()
+
 		if (CMAKE_VERSION VERSION_GREATER 3.12)
 		  set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 23)
 		endif()
 	endforeach()
 endforeach()
+
+include_directories(${CMAKE_SOURCE_DIR}/dependencies/stb)
 
 # TODO: Add tests and install targets if needed.
