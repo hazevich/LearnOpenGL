@@ -9,11 +9,11 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height);
 void processInput(GLFWwindow* window);
 
 float _vertices[] = {
-    // positions            // colors
-    -0.5f,  0.5f, 0.0f,     1.0f, 0.0f, 0.0f,
-    -0.5f, -0.5f, 0.0f,     0.0f, 1.0f, 0.0f,
-     0.5f, -0.5f, 0.0f,     0.0f, 0.0f, 1.0f,
-     0.5f,  0.5f, 0.0f,     1.0f, 1.0f, 1.0f,
+    // positions            // colors           // texture coordinates
+    -0.5f,  0.5f, 0.0f,     1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+    -0.5f, -0.5f, 0.0f,     0.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+     0.5f, -0.5f, 0.0f,     0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
+     0.5f,  0.5f, 0.0f,     1.0f, 1.0f, 1.0f,   1.0f, 0.0f,
 };
 
 uint32_t _indices[] = {
@@ -21,7 +21,7 @@ uint32_t _indices[] = {
     0, 2, 3,
 };
 
-void mainLoop(GLFWwindow* window, uint32_t VAO);
+void mainLoop(GLFWwindow* window, uint32_t VAO, uint32_t textureId);
 
 int main()
 {
@@ -68,11 +68,14 @@ int main()
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices), _indices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)0);
     glEnableVertexAttribArray(0);
 
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(3 * sizeof(float)));
     glEnableVertexAttribArray(1);
+
+    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
+    glEnableVertexAttribArray(2);
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindVertexArray(0);
@@ -96,7 +99,7 @@ int main()
 
     stbi_image_free(data);
 
-    mainLoop(window, VAO);
+    mainLoop(window, VAO, textureId);
 
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
@@ -106,7 +109,7 @@ int main()
     return 0;
 }
 
-void mainLoop(GLFWwindow* window, uint32_t VAO)
+void mainLoop(GLFWwindow* window, uint32_t VAO, uint32_t textureId)
 {
     Shader shader("shaders/vertex_shader.glsl", "shaders/fragment_shader.glsl");
 
@@ -118,6 +121,7 @@ void mainLoop(GLFWwindow* window, uint32_t VAO)
         glClear(GL_COLOR_BUFFER_BIT);
 
         shader.Use();
+        glBindTexture(GL_TEXTURE_2D, textureId);
 
         glBindVertexArray(VAO);
         glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
