@@ -40,7 +40,10 @@ add_library(stb_image src/stb_image.cpp)
 
 foreach(CHAPTER ${CHAPTERS})
 	foreach(SECTION ${${CHAPTER}})
-		file(GLOB SOURCE_FILES "src/${CHAPTER}/${SECTION}/*.cpp")
+		file(GLOB SOURCE_FILES 
+			"src/${CHAPTER}/${SECTION}/*.h"
+			"src/${CHAPTER}/${SECTION}/*.cpp"
+		)
 
 		project(${SECTION})
 
