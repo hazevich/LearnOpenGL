@@ -34,10 +34,12 @@ set(1_getting_started
 	5.5_textures_excercise_3
 	5.6_textures_excercise_3.1
 	5.7_textures_excercise_4
+	6.1_transformations
 )
 
 add_subdirectory(dependencies/glfw)
 add_subdirectory(dependencies/glad)
+add_subdirectory(dependencies/glm)
 
 add_library(stb_image src/stb_image.cpp)
 
@@ -55,6 +57,7 @@ foreach(CHAPTER ${CHAPTERS})
 
 		target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC glfw)
 		target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC glad)
+		target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC glm)
 		target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC stb_image)
 
 		set_target_properties(${PROJECT_NAME} PROPERTIES
