@@ -37,6 +37,7 @@ set(1_getting_started
 	6.1_transformations
 	6.2_transformations_excercise_1
 	6.3_transformations_excercise_2
+	7.1_coordinate_systems
 )
 
 add_subdirectory(dependencies/glfw)
