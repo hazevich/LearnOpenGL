@@ -198,11 +198,17 @@ void mainLoop(GLFWwindow* window, uint32_t VAO, uint32_t containerTextureId, uin
 
         glBindVertexArray(VAO);
 
-        glm::mat4 model = glm::mat4(1.0f);
-        model = glm::rotate(model, (float) glfwGetTime() * glm::radians(50.0f), glm::vec3(0.5f, 1.0f, 1.0f));
-        shader.SetMat4("model", model);
+        for (size_t i = 0; i < 10; i++)
+        {
+            float rotation = glm::radians(20.0f * i);
 
-        glDrawArrays(GL_TRIANGLES, 0, 36);
+            glm::mat4 model = glm::mat4(1.0f);
+            model = glm::translate(model, cubePositions[i]);
+            model = glm::rotate(model, rotation, glm::vec3(1.0f, 0.3f, 0.5f));
+            shader.SetMat4("model", model);
+
+            glDrawArrays(GL_TRIANGLES, 0, 36);
+        }
 
         glfwSwapBuffers(window);
         glfwPollEvents();
