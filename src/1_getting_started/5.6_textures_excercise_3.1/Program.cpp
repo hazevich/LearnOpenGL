@@ -10,16 +10,18 @@ void processInput(GLFWwindow* window);
 
 float _vertices[] = {
     // positions            // colors           // texture coordinates
-     0.5f,  0.5f, 0.0f,     0.0f, 0.0f, 1.0f,   1.0f, 1.0f, // top right
-     0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f,   1.0f, 0.0f, // bottom right
-    -0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,   0.0f, 0.0f, // bottom left
-    -0.5f,  0.5f, 0.0f,     0.0f, 1.0f, 0.0f,   0.0f, 1.0f, // top left
+     0.5f,  0.5f, 0.0f,     0.0f, 0.0f, 1.0f,   0.55f, 0.55f, // top right
+     0.5f, -0.5f, 0.0f,     1.0f, 1.0f, 1.0f,   0.55f, 0.45f, // bottom right
+    -0.5f, -0.5f, 0.0f,     1.0f, 0.0f, 0.0f,   0.45f, 0.45f, // bottom left
+    -0.5f,  0.5f, 0.0f,     0.0f, 1.0f, 0.0f,   0.45f, 0.55f, // top left
 };
 
 uint32_t _indices[] = {
     0, 1, 3,
     1, 2, 3,
 };
+
+vec2 _texCoordOffset = { .x = 0.0f, .y = 0.0f };
 
 void mainLoop(GLFWwindow* window, uint32_t VAO, uint32_t containerTextureId, uint32_t awesomefaceTextureId);
 
@@ -95,6 +97,10 @@ int main()
     uint32_t containerTextureId;
     glGenTextures(1, &containerTextureId);
     glBindTexture(GL_TEXTURE_2D, containerTextureId);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -112,6 +118,10 @@ int main()
     uint32_t awesomefaceTextureId;
     glGenTextures(1, &awesomefaceTextureId);
     glBindTexture(GL_TEXTURE_2D, awesomefaceTextureId);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
     glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -142,6 +152,7 @@ void mainLoop(GLFWwindow* window, uint32_t VAO, uint32_t containerTextureId, uin
         glClear(GL_COLOR_BUFFER_BIT);
 
         shader.Use();
+        shader.SetVec2("texCoordOffset", _texCoordOffset);
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, containerTextureId);
 
@@ -166,5 +177,25 @@ void processInput(GLFWwindow* window)
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
     {
         glfwSetWindowShouldClose(window, true);
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+    {
+        _texCoordOffset.y -= 0.001f;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+    {
+        _texCoordOffset.y += 0.001f;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+    {
+        _texCoordOffset.x += 0.001f;
+    }
+
+    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS)
+    {
+        _texCoordOffset.x -= 0.001f;
     }
 }
