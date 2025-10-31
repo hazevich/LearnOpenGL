@@ -33,6 +33,7 @@ set(1_getting_started
 	5.4_textures_excercise_2
 	5.5_textures_excercise_3
 	5.6_textures_excercise_3.1
+	5.7_textures_excercise_4
 )
 
 add_subdirectory(dependencies/glfw)
