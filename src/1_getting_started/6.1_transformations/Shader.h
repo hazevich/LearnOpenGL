@@ -3,6 +3,8 @@
 #include <stdint.h>
 #include <string>
 
+#include "glm/glm.hpp"
+
 class Shader
 {
 public:
@@ -14,4 +16,5 @@ public:
     void Use();
 
     void SetInt(const std::string& parameterName, int32_t value);
+    void SetMat4(const std::string& parameterName, glm::mat4 value);
 };

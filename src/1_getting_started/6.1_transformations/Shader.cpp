@@ -8,6 +8,8 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
+#include "glm/gtc/type_ptr.hpp"
+
 Shader::Shader(const char* vertexShaderPath, const char* fragmentShaderPath)
 {
     std::string vertexShaderCode;
@@ -100,4 +102,10 @@ void Shader::SetInt(const std::string& parameterName, int32_t value)
 {
     int32_t parameterLocation = glGetUniformLocation(ShaderId, parameterName.c_str());
     glUniform1i(parameterLocation, value);
+}
+
+void Shader::SetMat4(const std::string& parameterName, glm::mat4 value)
+{
+    int32_t parameterLocation = glGetUniformLocation(ShaderId, parameterName.c_str());
+    glUniformMatrix4fv(parameterLocation, 1, GL_FALSE, glm::value_ptr(value));
 }
